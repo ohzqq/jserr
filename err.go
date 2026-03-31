@@ -20,6 +20,7 @@ func Wrap(err error) *Error {
 }
 
 func (e *Error) Log() {
+	defer Recover()
 	Log(e.Value)
 }
 
@@ -43,5 +44,6 @@ file: %v
 `
 
 func Log(vals ...any) {
+	defer Recover()
 	js.Global().Get("console").Call("log", vals...)
 }
