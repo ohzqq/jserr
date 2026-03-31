@@ -42,6 +42,6 @@ file: %v
 	err: %w
 `
 
-func Log(vals ...js.Value) {
+func Log(vals ...any) {
 	js.Global().Get("console").Call("log", vals...)
 }
