@@ -11,7 +11,7 @@ type Error struct {
 	js.Value
 }
 
-func New(val ...string) *Error {
+func New(val ...any) *Error {
 	return &Error{Value: js.Global().Get("Error").New(val...)}
 }
 
@@ -20,7 +20,7 @@ func Wrap(err error) *Error {
 }
 
 func (e *Error) Log() {
-	js.Global().Get("console").Call("log", e.Value)
+	Log(e.Value)
 }
 
 func (e *Error) Error() string {
